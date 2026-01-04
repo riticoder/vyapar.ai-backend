@@ -121,19 +121,23 @@ public class AIController {
         
         // Business analytics responses
         if (lowerMsg.contains("sales") || lowerMsg.contains("बिक्री")) {
-            return "📊 Sales analysis: Aapki sales performance is quarter mein stable hai. Pichle mahine ke comparison mein 8% growth dekhi ja rahi hai.";
+            return "📊 **Sales Analysis Complete!**\n\nAapki sales performance ka detailed analysis:\n- Current Month: ₹2,45,000 (↑ 12% from last month)\n- Top Product: Product A (35% contribution)\n- Peak Hours: 2 PM - 5 PM\n\n💡 **Recommendation:** Evening slot mein inventory badhao, demand zyada hai!";
         } else if (lowerMsg.contains("inventory") || lowerMsg.contains("stock") || lowerMsg.contains("स्टॉक")) {
-            return "📦 Inventory status: Current stock levels optimal hain. Kuch high-demand items ki reorder point aa rahi hai.";
+            return "📦 **Inventory Status Report**\n\n✅ Well Stocked: 45 items\n⚠️ Low Stock Alert: 8 items\n🔴 Out of Stock: 2 items\n\n**Action Required:**\n- Product X: Only 5 units left - reorder immediately!\n- Product Y: Trending item - increase stock by 50%";
         } else if (lowerMsg.contains("profit") || lowerMsg.contains("मुनाफा") || lowerMsg.contains("revenue")) {
-            return "💰 Profit analysis: Overall profit margin 12-15% range mein hai. Cost optimization ke liye kuch suggestions hain.";
+            return "💰 **Profit & Revenue Analysis**\n\n**This Month:**\n- Total Revenue: ₹5,67,000\n- Total Expenses: ₹4,12,000\n- Net Profit: ₹1,55,000 (27.3% margin)\n\n**Trend:** ↗️ +15% profit vs last month\n**Best Day:** Sunday (₹89,000 revenue)";
         } else if (lowerMsg.contains("customer") || lowerMsg.contains("ग्राहक")) {
-            return "👥 Customer insights: Customer retention rate 85% hai. Repeat customers se achha revenue aa raha hai.";
+            return "👥 **Customer Insights Dashboard**\n\n- Total Customers: 1,247\n- New Customers (This Month): 89\n- Repeat Customers: 847 (68%)\n- Customer Satisfaction: 4.2/5 ⭐\n\n**Top Customers:**\n1. Rajesh Kumar - ₹45,000 (lifetime)\n2. Priya Sharma - ₹38,500\n3. Amit Patel - ₹32,100";
         } else if (lowerMsg.contains("report") || lowerMsg.contains("रिपोर्ट")) {
-            return "📈 Reports: Main aapke liye detailed reports generate kar sakta hoon. Kis type ki report chahiye?";
-        } else if (lowerMsg.contains("help") || lowerMsg.contains("मदद")) {
-            return "🤝 Main aapki business management mein help kar sakta hoon - Sales tracking, Inventory management, Financial analysis, Customer insights, aur Business reports!";
+            return "📈 **Business Reports Available:**\n\n1. 📊 Daily Sales Report\n2. 📦 Inventory Movement Report\n3. 💰 P&L Statement\n4. 👥 Customer Analytics\n5. 📉 Expense Tracking\n6. 🎯 Goals & Targets\n\nKonsi report chahiye? Type karein report name!";
+        } else if (lowerMsg.contains("expense") || lowerMsg.contains("खर्च")) {
+            return "💸 **Expense Breakdown (This Month)**\n\n- Raw Materials: ₹2,10,000 (51%)\n- Salaries: ₹1,20,000 (29%)\n- Rent & Utilities: ₹45,000 (11%)\n- Marketing: ₹25,000 (6%)\n- Others: ₹12,000 (3%)\n\n**Total:** ₹4,12,000\n**Tip:** Marketing ROI 3.2x hai - budget badha sakte hain!";
+        } else if (lowerMsg.contains("help") || lowerMsg.contains("मदद") || lowerMsg.contains("kya") || lowerMsg.contains("what")) {
+            return "🤝 **Vyapar AI - Aapka Business Assistant**\n\nMain aapki help kar sakta hoon:\n\n✅ Sales & Revenue Analysis\n✅ Inventory Management\n✅ Profit Calculations\n✅ Customer Insights\n✅ Expense Tracking\n✅ Business Reports\n✅ Growth Recommendations\n\nBas puchiye - \"Sales kitni hui?\" ya \"Inventory check karo\" - main samajh jaunga! 😊";
+        } else if (lowerMsg.contains("hi") || lowerMsg.contains("hello") || lowerMsg.contains("नमस्ते")) {
+            return "नमस्ते! 🙏 Main Vyapar AI, aapka business assistant.\n\nAaj main aapki kaise madad kar sakta hoon?\n\n💡 **Quick Actions:**\n- Sales report dekho\n- Inventory check karo\n- Profit analysis\n- Customer insights\n\nBas puchiye, main ready hoon!";
         } else {
-            return "Samajh gaya! Main aapke business data ko analyze kar raha hoon. Thoda detailed batayein ki aapko kis cheez mein madad chahiye?";
+            return "**Analyzing your query...** 🔍\n\nMain aapke business data ko analyze kar raha hoon. Thoda zyada detail batayein:\n\n📌 Sales ke baare mein janna hai?\n📌 Inventory status chahiye?\n📌 Profit/Loss dekhna hai?\n📌 Customer data analyze karna hai?\n\nSpecific question puchiye, better insights dunga!";
         }
     }
 
