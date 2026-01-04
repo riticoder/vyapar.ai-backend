@@ -19,11 +19,11 @@ WORKDIR /app
 # Copy jar from build stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Expose port 8080
+# Expose port 8080 (Railway will override with PORT env)
 EXPOSE 8080
 
 # Set environment variables
 ENV JAVA_OPTS="-Xmx512m -Xms256m"
 
-# Run the application
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+# Run the application (PORT is set by Railway)
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dserver.port=${PORT:-8080} -jar app.jar"]
