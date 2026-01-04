@@ -36,11 +36,17 @@ public class AIController {
             aiRequest.put("user_input", userMessage);
             aiRequest.put("language", request.getOrDefault("language", "hi"));
 
+            System.out.println("🤖 Calling AI Model at: " + aiModelUrl);
+            System.out.println("📨 Request payload: " + aiRequest);
+
             try {
                 // Try to call Streamlit AI model
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
+                headers.set("Accept", "*/*");
                 HttpEntity<Map<String, Object>> entity = new HttpEntity<>(aiRequest, headers);
+                
+                System.out.println("🚀 Sending request to AI model...");
                 
                 ResponseEntity<Map> aiResponse = restTemplate.exchange(
                     aiModelUrl,
@@ -49,28 +55,40 @@ public class AIController {
                     Map.class
                 );
 
+                System.out.println("✅ AI Model responded with status: " + aiResponse.getStatusCode());
+                System.out.println("📥 Response body: " + aiResponse.getBody());
+
                 if (aiResponse.getStatusCode().is2xxSuccessful() && aiResponse.getBody() != null) {
                     Map<String, Object> responseBody = aiResponse.getBody();
                     
                     // Extract response from various possible formats
                     String aiAnswer = extractResponse(responseBody);
                     
+                    System.out.println("💬 Extracted AI answer: " + aiAnswer);
+                    
                     Map<String, String> response = new HashMap<>();
                     response.put("response", aiAnswer);
-                    response.put("status", "success");
+                    response.put("status", "ai-success");
+                    response.put("source", "streamlit-ai-model");
                     
                     return ResponseEntity.ok(response);
                 }
             } catch (Exception e) {
-                System.err.println("AI Model call failed: " + e.getMessage());
+                System.err.println("❌ AI Model call failed: " + e.getClass().getName());
+                System.err.println("❌ Error message: " + e.getMessage());
+                e.printStackTrace();
                 // Fallback: return intelligent response
             }
 
+            System.out.println("⚠️ Using fallback response for: " + userMessage);
+            
             // Fallback intelligent response
             String fallbackResponse = generateIntelligentResponse(userMessage);
             Map<String, String> response = new HashMap<>();
             response.put("response", fallbackResponse);
             response.put("status", "fallback");
+            response.put("source", "backend-fallback");
+            response.put("note", "AI model unavailable - using intelligent fallback");
             
             return ResponseEntity.ok(response);
 
