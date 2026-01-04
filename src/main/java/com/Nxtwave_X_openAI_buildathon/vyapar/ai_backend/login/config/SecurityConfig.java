@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/forgot-password").permitAll()
                 .requestMatchers(HttpMethod.POST, "/reset-password").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated()
             )
             .authenticationProvider(authenticationProvider())
@@ -68,6 +69,10 @@ public class SecurityConfig {
         // LOCAL DEVELOPMENT
         configuration.addAllowedOrigin("http://localhost:3000");
         configuration.addAllowedOrigin("http://localhost:8080");
+        
+        // PRODUCTION
+        configuration.addAllowedOrigin("https://vyaparai.ecellecb.com");
+        configuration.addAllowedOrigin("https://vyaparapi.ecellecb.com");
         
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("GET");

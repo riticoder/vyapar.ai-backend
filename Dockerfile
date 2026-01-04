@@ -25,5 +25,6 @@ EXPOSE 8080
 # Set environment variables
 ENV JAVA_OPTS="-Xmx512m -Xms256m"
 
-# Run the application (PORT is set by Railway)
+# Run the application
+# Railway provides PORT env variable, we map it to SERVER_PORT which our app.properties uses
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dserver.port=${PORT:-8080} -jar app.jar"]
